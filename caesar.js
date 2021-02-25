@@ -2,6 +2,9 @@ const caesar = (input, num = 1) => {
 	while (num > 26) {
 		num -= 26;
 	}
+	while (num < -26) {
+		num += 26;
+	}
 	const array = input.split('');
 
 	return array
@@ -14,11 +17,15 @@ const caesar = (input, num = 1) => {
 					// char is lower case
 					if (char.charCodeAt() + num > 122) {
 						return String.fromCharCode(96 + num);
+					} else if (char.charCodeAt() + num < 97) {
+						return String.fromCharCode(123 + num);
 					}
 				} else {
 					// char is upper case
 					if (char.charCodeAt() + num > 90) {
 						return String.fromCharCode(64 + num);
+					} else if (char.charCodeAt() + num < 65) {
+						return String.fromCharCode(91 + num);
 					}
 				}
 				return String.fromCharCode(char.charCodeAt() + num);
